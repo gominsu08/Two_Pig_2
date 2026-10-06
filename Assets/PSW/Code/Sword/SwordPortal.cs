@@ -14,6 +14,7 @@ namespace Assets.PSW.Code.Sword
 
         private int _damage;
         private Sprite _image;
+        private float _screenRightX;
 
         private void Awake()
         {
@@ -21,10 +22,11 @@ namespace Assets.PSW.Code.Sword
             _closeHash = Animator.StringToHash(closeClipName);
         }
 
-        public void OpenPortal(Sprite image, int damage)
+        public void OpenPortal(Sprite image, int damage, float screenRightX)
         {
             _damage = damage;
             _image = image;
+            _screenRightX = screenRightX;
             animator.Play(_openHash, 0, 0f);
         }
 
@@ -41,7 +43,7 @@ namespace Assets.PSW.Code.Sword
                 return;
             }
 
-            sword.StartSword(_image, _damage, transform.position);
+            sword.StartSword(_image, _damage, transform.position, _screenRightX);
         }
 
         // 포탈 애니메이션의 마지막 프레임에서 호출합니다.

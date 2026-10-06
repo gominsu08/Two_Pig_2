@@ -74,8 +74,13 @@ namespace PSW.Code.Battle
                 return;
             }
 
+            if (!TryGetSpawnPosition(battleCamera, new Vector2(1f, viewportPosition.y), out Vector3 rightEdge))
+            {
+                return;
+            }
+
             SwordPortal portal = Instantiate(swordPortalPrefab, position, swordPortalPrefab.transform.rotation);
-            portal.OpenPortal(data.swordImage, data.damage);
+            portal.OpenPortal(data.swordImage, data.damage, rightEdge.x);
         }
 
         private bool TryGetSpawnPosition(Camera camera, Vector2 viewportPosition, out Vector3 position)
